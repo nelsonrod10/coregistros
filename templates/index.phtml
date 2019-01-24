@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Nelson Rodriguez">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Ejercicio Programador · CoRegistros</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../public/css/bootstrap.min.css" rel="stylesheet" >
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="floating-labels.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-6">
+          <br/>
+          <form class="form-signin" method="get" action="http://demo1.asiventuweb.com/public/lead/store"><!--http://coregistros.ejercicio/lead/store-->
+            <div class="text-center mb-4">
+              <img class="mb-4" src="../public/img/logo.jpg" alt="">
+              <h1 class="h3 mb-3 font-weight-normal">Ejercicio Programador</h1>
+              <div class="alert alert-info text-center" role="alert">
+                <div>Para verificar el endpoint en beeceptor <a href="https://beeceptor.com/console/nelsonrod" target="_blank">Click</a></div>
+                <div>Revisar y descargar el código en Github <a href="https://beeceptor.com/console/nelsonrod" target="_blank">Click</a></div>
+              </div>
+              <p>Por favor diligencie los siguientes campos</p>
+            </div>
+            <?php if(isset($_SESSION["repeat-email"])):?>
+              <div class="alert alert-danger text-center" role="alert">
+                ¡El email <?php echo $_SESSION["repeat-email"] ?>, ya existe!
+              </div>
+            <?php endif; ?>
+            <div class="form-group <?php echo $_SESSION["errors"]["firstname"] ? "has-error":"" ?>" >
+              <label for="firstname"><b>Nombres</b></label>
+              <input type="text" id="firstname" name="firstname" class="form-control" placeholder="Ingrese sus nombres" required autofocus>
+              <?php if(isset($_SESSION["errors"]["firstname"])):?>
+                <span class="help-block"><?php echo $_SESSION["errors"]["firstname"][0]?></span>
+              <?php endif; ?>
+            </div>
+
+            <div class="form-group <?php echo $_SESSION["errors"]["lastname"] ? "has-error":"" ?>" >
+              <label for="lastname"><b>Apellidos</b></label>
+              <input type="text" id="lastname" name="lastname" class="form-control" placeholder="Ingrese sus apellidos" required>
+              <?php if(isset($_SESSION["errors"]["lastname"])):?>
+                <span class="help-block"><?php echo $_SESSION["errors"]["lastname"][0]?></span>
+              <?php endif; ?>
+            </div>
+
+            <div class="form-group <?php echo $_SESSION["errors"]["email"] ? "has-error":"" ?>" >
+              <label for="email"><b>Email</b></label>
+              <input type="email" id="email" name="email" class="form-control" placeholder="example@example.com" required>
+              <?php if(isset($_SESSION["errors"]["email"])):?>
+                <span class="help-block"><?php echo $_SESSION["errors"]["email"][0]?></span>
+              <?php endif; ?>
+            </div>
+
+            <div class="form-group <?php echo $_SESSION["errors"]["phone"] ? "has-error":"" ?>" >
+              <label for="phone"><b>Teléfono</b></label>
+              <input type="number" id="phone" name="phone" class="form-control" placeholder="320 4019068" required>
+              <?php if(isset($_SESSION["errors"]["phone"])):?>
+                <span class="help-block"><?php echo $_SESSION["errors"]["phone"][0]?></span>
+              <?php endif; ?>
+            </div>
+
+            <div class="form-group <?php echo $_SESSION["errors"]["zipcode"] ? "has-error":"" ?>" >
+              <label for="zipcode"><b>Zipcode</b></label>
+              <select id="zipcode" name="zipcode" class="form-control" required>
+                <option value=""></option>
+                <option value="08456">08456</option>
+                <option value="09789">09789</option>
+                <option value="04536">04536</option>
+              </select>
+              <?php if(isset($_SESSION["errors"]["zipcode"])):?>
+                <span class="help-block"><?php echo $_SESSION["errors"]["zipcode"][0]?></span>
+              <?php endif; ?>
+            </div>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Enviar</button>
+            <p class="mt-5 mb-3 text-muted text-center">&copy; 2019</p>
+          </form>
+          
+        </div>
+      </div>
+
+
+    </div>
+</body>
+</html>
+<?php
+if(isset($_SESSION["errors"]) || isset($_SESSION["repeat-email"])){
+  session_destroy();
+}
+
+?>
